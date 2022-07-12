@@ -6,7 +6,9 @@ import urllib3
 
 from bs4 import BeautifulSoup
 from Color_Console import ctext
+from rich.console import Console
 
+console = Console()
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -69,8 +71,10 @@ def find_scripts(url):
             else:
                 parsed_url = re.search("[a-zA-Z0-9-_.]+\.[a-zA-Z]{2,}", script_src).group()
             try:
-                print(f"Cheking: http://{parsed_url}")
                 find_subdomains(requests.get('http://' + parsed_url, verify=False, headers=HEADERS).text, url)
+                with open('parsed_urls.txt','a') as f_urls:
+                    f_urls.write('http://' + parsed_url)
+                    f_urls.write('\n')
                 src_url = re.search("[a-zA-Z0-9-_.]+\.[a-zA-Z]{2,}", script_src).group()
                 if src_url not in SUBDOMAINS_ENUMERATED:
                     SUBDOMAINS_ENUMERATED.append(src_url)
@@ -163,7 +167,9 @@ def main():
     # Read URL list from provided path
     if args.f:
         url_list = open(args.f,"r")
+        with console.status("") as status:
         for URL in url_list.readlines():
+            console.print(f"[yellow] Processing: {URL}")
             find_scripts(URL.strip())
             
     # Read URL from argument
