@@ -2,5 +2,5 @@ argparse
 requests
 beautifulsoup4
 lxml
-color_console
+rich
 urllib3
