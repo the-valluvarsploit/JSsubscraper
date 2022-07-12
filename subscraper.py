@@ -71,7 +71,7 @@ def find_scripts(url):
                 parsed_url = re.search("[a-zA-Z0-9-_.]+\.[a-zA-Z]{2,}", script_src).group()
             try:
                 find_subdomains(requests.get('http://' + parsed_url, verify=False, headers=HEADERS).text, url)
-                with open('parsed_urls.txt','a') as f_urls:
+                with open('subscraper_urls.txt','a') as f_urls:
                     f_urls.write('http://' + parsed_url)
                     f_urls.write('\n')
                 src_url = re.search("[a-zA-Z0-9-_.]+\.[a-zA-Z]{2,}", script_src).group()
