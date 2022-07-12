@@ -91,6 +91,7 @@ def is_live(url):
     Here we will use another function to capture errors in our requests.
     It's very common for request errors so we simply ignore it.
     """
+    print(f"Checking: {url}"
     try:
         r = requests.get('http://' + str(url), verify=False, headers=HEADERS)
         return r
@@ -123,8 +124,8 @@ def find_subdomains(script, url):
         else:
             parsed_subdomain = subdomain
         if parsed_subdomain not in SUBDOMAINS_ENUMERATED:
-            if args.v:
-                ctext("[+] " + subdomain, "green")
+#            if args.v:
+            ctext("[+] " + subdomain, "green")
             SUBDOMAINS_ENUMERATED.append(subdomain)
 
     # If our total subdomains discovered is not the same length as our sites visited, scan the rest of our subdomains.
