@@ -5,7 +5,6 @@ import requests
 import urllib3
 
 from bs4 import BeautifulSoup
-from Color_Console import ctext
 from rich.console import Console
 
 console = Console()
@@ -118,18 +117,16 @@ def find_subdomains(script, url):
             parsed_subdomain = subdomain.split("%")[-1][2:]
         # If the subdomain is preceded by \x escape sequence, remove it.
         elif "\\x" in subdomain:
-            ctext("[+] " + subdomain, "red")
+            onsole.print("[red][+] " + subdomain, "red")
             parsed_subdomain = subdomain.split("\\x")[-1][2:]
         # If the subdomain is preceded by \u unicode sequence, remove it.
         elif "\\u" in subdomain:
-            ctext("[+] " + subdomain, "red")
+            console.print("[red][+] " + subdomain)
             parsed_subdomain = subdomain.split("\\u")[-1][4:]
         # Otherwise proceed as normal.
         else:
             parsed_subdomain = subdomain
         if parsed_subdomain not in SUBDOMAINS_ENUMERATED:
-#            if args.v:
-#            ctext("[+] " + subdomain, "green")
             console.print("[green][+] " + subdomain)
             SUBDOMAINS_ENUMERATED.append(subdomain)
 
@@ -140,22 +137,23 @@ def find_subdomains(script, url):
 
 
 def ascii_banner():
-    ctext("                      `. ___", "red")
-    ctext("                    __,' __`.                _..----....____", "red")
-    ctext("        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'", "red")
-    ctext("  _..-''-------'   `'   `'   `'     O ``-''._   (,;') _,'", "red")
-    ctext(",'________________                          \`-._`-','", "red")
-    ctext(" `._              ```````````------...___   '-.._'-:", "red")
-    ctext("    ```--.._      ,.                     ````--...__\-.", "red")
-    ctext("            `.--. `-`                       ____    |  |`", "red")
-    ctext("              `. `.                       ,'`````.  ;  ;`", "red")
-    ctext("                `._`.        __________   `.      \'__/`", "red")
-    ctext("                   `-:._____/______/___/____`.     \\  `", "red")
-    ctext("         SUBSCRAPER            |       `._    `.    \\", "red")
-    ctext("         SUBSCRAPER            `._________`-.   `.   `.___", "red")
-    ctext("         SUBSCRAPER                v1.0.0         `------'`", "red")
-    ctext("\nSubdomains Found:\n")
+    console.print("[red]                      `. ___")
+    console.print("[red]                    __,' __`.                _..----....____")
+    console.print("[red]        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'")
+    console.print("[red]  _..-''-------'   `'   `'   `'     O ``-''._   (,;') _,'")
+    console.print("[red],'________________                          \`-._`-','")
+    console.print("[red] `._              ```````````------...___   '-.._'-:")
+    console.print("[red]    ```--.._      ,.                     ````--...__\-.")
+    console.print("[red]            `.--. `-`                       ____    |  |`")
+    console.print("[red]              `. `.                       ,'`````.  ;  ;`")
+    console.print("[red]                `._`.        __________   `.      \'__/`")
+    console.print("[red]                   `-:._____/______/___/____`.     \\  `")
+    console.print("[red]         SUBSCRAPER            |       `._    `.    \\")
+    console.print("[red]         SUBSCRAPER            `._________`-.   `.   `.___")
+    console.print("[red]         SUBSCRAPER                v1.0.0         `------'`")
+    console.print("[red]\nSubdomains Found:\n")
 
+    console.print("[green][+] " + subdomain)
 
 def main():
     # Banner
