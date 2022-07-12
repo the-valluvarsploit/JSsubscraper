@@ -168,13 +168,15 @@ def main():
     if args.f:
         url_list = open(args.f,"r")
         with console.status("") as status:
-        for URL in url_list.readlines():
-            console.print(f"[yellow] Processing: {URL}")
-            find_scripts(URL.strip())
+            for URL in url_list.readlines():
+                console.print(f"[yellow] Processing: {URL}")
+                find_scripts(URL.strip())
             
     # Read URL from argument
     elif args.u:
-        find_scripts(args.u)
+        with console.status("") as status:
+            console.print(f"[yellow] Processing: {args.u}")
+            find_scripts(args.u)
         
     # If neither provided, throw error    
     else:
