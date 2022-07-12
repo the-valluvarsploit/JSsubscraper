@@ -129,7 +129,8 @@ def find_subdomains(script, url):
             parsed_subdomain = subdomain
         if parsed_subdomain not in SUBDOMAINS_ENUMERATED:
 #            if args.v:
-            ctext("[+] " + subdomain, "green")
+#            ctext("[+] " + subdomain, "green")
+            print("[green][+] " + subdomain)
             SUBDOMAINS_ENUMERATED.append(subdomain)
 
     # If our total subdomains discovered is not the same length as our sites visited, scan the rest of our subdomains.
