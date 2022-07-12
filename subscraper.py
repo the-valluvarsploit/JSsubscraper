@@ -151,7 +151,7 @@ def ascii_banner():
     console.print("[red]         SUBSCRAPER            |       `._    `.    \\")
     console.print("[red]         SUBSCRAPER            `._________`-.   `.   `.___")
     console.print("[red]         SUBSCRAPER                v1.0.0         `------'`")
-    console.print("[red]\nSubdomains Found:\n")
+    console.print("[white]\nSubdomains Found:\n")
 
 def main():
     # Banner
