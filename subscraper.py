@@ -91,7 +91,7 @@ def is_live(url):
     Here we will use another function to capture errors in our requests.
     It's very common for request errors so we simply ignore it.
     """
-    print(f"Checking: {url}"
+    print(f"Checking: {url}")
     try:
         r = requests.get('http://' + str(url), verify=False, headers=HEADERS)
         return r
