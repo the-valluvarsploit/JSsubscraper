@@ -174,7 +174,7 @@ def main():
     # Read URL from argument
     elif args.u:
         with console.status("") as status:
-            status.update(f"[yellow] Processing: {URL}")
+            status.update(f"[yellow] Processing: {args.u}")
             find_scripts(args.u)
         
     # If neither provided, throw error    
